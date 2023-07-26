@@ -33,9 +33,23 @@ function submitAnswer() {
 }
 
 function rdbtnChecked() {
-    console.info("radio button clicked...")
+    console.info("radio button is clicked...")
     btnReadyState = btnReadyState | 2;
     if (btnReadyState === 3) {
         btnSubmit.disabled = false;
     }
+    var fdata = new FormData(document.forms[0]);
+    var answerId = fdata.get("opts") | 0;
+    console.info("radio button clicked...");
+    console.info("Answered: " + answerId);
+
+    var radioBtns = document.querySelectorAll("label");
+    for (var i = 0; i < radioBtns.length; i++) {
+        radioBtns[i].classList.add("bg-light");
+
+    }
+    radioBtns[answerId].classList.remove("bg-light");
+    radioBtns[answerId].classList.add("bg-primary");
+
+
 }
