@@ -1,0 +1,41 @@
+﻿@page "/answer/{sessionId}"
+@model Scan2Answer.Pages.AnswerModel
+@{
+    ViewData["Title"] = "Answering...";
+}
+
+
+
+@if (Model.Session != null)
+{
+    <h1>请回答以下问题：</h1>
+    <h2>@Model.Session?.Question?.Statement</h2>
+
+    
+    <form>
+
+    @for (int i = 0; i < Model.Session?.Question?.optionLength(); i++)
+    {
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="opts" id="option_@i" oninput="rdbtnChecked()" value="@i">
+            <label class="form-check-label" for="option_@i">
+                    @Model.Session?.Question?.Options[i].Option
+            </label>
+        </div>
+    }
+
+    <button type="button" class="btn btn-primary" id="btnSubmit" onclick="submitAnswer()" disabled>
+        提交
+    </button>
+
+
+    </form>
+}
+else{
+    <h1 class="warning">
+        网页请求无效，该答题不存在
+    </h1>
+}
+
+<script src="~/js/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/student.js"></script>
