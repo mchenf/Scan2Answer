@@ -5,6 +5,17 @@
     
 }
 
+<div class="card mx-auto" style="width:32rem">
+
+    <img class="card-img-top" alt="QR Code for visiting the site" src="@Model.qrCodeImageData" />
+    <div class="card-body">
+        <h5 class="card-title">请使用手机扫码回答</h5>
+
+
+        <a class="btn btn-primary" href="/answer/@Model.SessionID">或者点击进入答题</a>
+    </div>
+</div>
+
 
 <div>@Model.Question?.Statement</div>
 @for (int i = 0; i < Model.Question?.optionLength(); i++)
@@ -20,9 +31,6 @@
             id="pbar_@i"></div>
     </div>
 }
-
-<a href="/answer/@Model.SessionID">To Answer</a>
-<img alt="QR Code for visiting the site" src="@Model.qrCodeImageData" />
 
 <div>当前在线人数：<span id="StudentsOnline">0</span></div>
 <div>已经回答人数：<span id="StudentsAnswered">0</span></div>
