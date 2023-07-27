@@ -26,7 +26,7 @@ function submitAnswer() {
     connection.invoke("Answer", answerId)
     btnSubmit.disabled = true;
     btnReadyState = btnReadyState & ~1 //disable submit for this student
-    var radioBtns = document.querySelectorAll("input.form-check-input");
+    var radioBtns = document.querySelectorAll("label");
     for (var i = 0; i < radioBtns.length; i++) {
         radioBtns[i].disabled = true;
     }
