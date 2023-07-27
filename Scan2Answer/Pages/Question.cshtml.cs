@@ -31,7 +31,7 @@ namespace Scan2Answer.Pages
             session.Question = Question;
             session.SessionId = SessionID;
 
-            GetQRCode(string.Join('/', @"https://localhost:7047", "answer", SessionID));
+            GetQRCode(string.Join('/', @"https://s2a.azurewebsites.net", "answer", SessionID));
         }
 
         public void GetQRCode(string absoluteUri)
