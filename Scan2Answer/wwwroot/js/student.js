@@ -32,6 +32,8 @@ function submitAnswer() {
     }
 }
 
+
+// Happens when the option label is clicked
 function rdbtnChecked() {
     console.info("radio button is clicked...")
     btnReadyState = btnReadyState | 2;
@@ -46,10 +48,14 @@ function rdbtnChecked() {
     var radioBtns = document.querySelectorAll("label");
     for (var i = 0; i < radioBtns.length; i++) {
         radioBtns[i].classList.add("bg-light");
-
+        radioBtns[i].classList.remove("bg-primary");
+        radioBtns[i].classList.add("text-black");
+        radioBtns[i].classList.remove("text-white");
     }
     radioBtns[answerId].classList.remove("bg-light");
+    radioBtns[answerId].classList.remove("text-black");
     radioBtns[answerId].classList.add("bg-primary");
+    radioBtns[answerId].classList.add("text-white");
 
 
 }
