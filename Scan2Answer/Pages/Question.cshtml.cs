@@ -22,7 +22,10 @@ namespace Scan2Answer.Pages
         public Question? Question { get; private set; }
         [BindProperty]
         public string qrCodeImageData { get; set; } = string.Empty;
-        public void OnGet([FromRoute]int id, [FromServices]MockQuestionSet questions, [FromServices]QuestionSession session)
+        public void OnGet([FromRoute]int id, 
+            [FromServices]MockQuestionSet questions, 
+            [FromServices]QuestionSession session,
+            [FromServices]IServer server)
         {
             Id = id;
             Question = questions[id];
@@ -31,7 +34,14 @@ namespace Scan2Answer.Pages
             session.Question = Question;
             session.SessionId = SessionID;
 
-            GetQRCode(string.Join('/', @"https://s2a.azurewebsites.net", "answer", SessionID));
+            var addresses = server.Features.Get<IServerAddressesFeature>()?.Addresses;
+
+            if (addresses != null && addresses.Count > 0)
+            {
+                string address = addresses.First();
+
+                GetQRCode(string.Join('/', address, "answer", SessionID));
+            }
         }
 
         public void GetQRCode(string absoluteUri)
